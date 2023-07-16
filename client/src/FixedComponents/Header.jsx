@@ -5,7 +5,7 @@ import logo from '../images/logo.png';
 import { FaSearch } from 'react-icons/fa';
 function Header() {
   return (
-    <div className="bg-white fixed flex items-center pl-[130px] mb-5 h-[120px] shadow-md w-full">
+    <div className="bg-white flex items-center pl-[130px] mb h-[120px] shadow-md w-full">
       <div className="h-full pl-5 mr-[30px]">
         <Link 
           to="/"

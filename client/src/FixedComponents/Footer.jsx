@@ -42,24 +42,28 @@ function Footer() {
             <FaFacebookSquare 
               size='2rem'
               color='#fff'
+              className='hover:bg-indigo-600 hover:text-white'
             />
           </Link>
           <Link to="https://www.instagram.com/">
             <FaInstagramSquare 
               size='2rem'
               color='#fff'
+              className='hover:bg-indigo-600 hover:text-white'
             />
           </Link>
           <Link to="https://twitter.com/home">
             <FaTwitterSquare 
               size='2rem'
               color='#fff'
+              className='hover:bg-indigo-600 hover:text-white'
             />
           </Link>
           <Link to="https://www.linkedin.com/feed/">
             <FaLinkedin
               size='2rem'
               color='#fff'
+              className='hover:bg-indigo-600 hover:text-white'
             />
           </Link>  
         </div>

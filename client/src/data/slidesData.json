@@ -1,0 +1,16 @@
+{
+    "slides": [
+        {
+            "src": "https://img.freepik.com/free-photo/antiques-market_1182-841.jpg?w=1060&t=st=1689501804~exp=1689502404~hmac=c0b4a5318ea70a0f37cae72c64ee6a669cb511932a0624ee027b0affb830c091",
+            "alt": "111"
+        },
+        {
+            "src": "https://thumbs.dreamstime.com/z/black-friday-sale-gift-box-online-shopping-198403841.jpg",
+            "alt": "222"
+        },
+        {
+            "src": "https://cdn.shopify.com/s/files/1/1011/8106/files/Tower-Bridge-Shop-Safe-Layout-1.jpg?v=1601302354",
+            "alt": "333"
+        }
+    ]
+}
