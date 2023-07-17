@@ -1,5 +1,4 @@
 import React from 'react'
-import Register from '../userAuth/Register';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
 import { FaSearch } from 'react-icons/fa';
