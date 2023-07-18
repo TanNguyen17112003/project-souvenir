@@ -23,6 +23,17 @@ app.get("/items", (req, res) => {
         return res.json(data);
     })
 })
+
+app.get("/items/:id", (req, res) => {
+    const itemId = req.params.id;
+    const query = "SELECT * FROM item WHERE id = ?";
+    myDb.query(query, [itemId], (err, data) => {
+        if (err) {
+            return res.json(err);
+        }
+        return res.json(data);
+    })
+})
 app.listen(PORT, () => {
     console.log('Project is running')
 })

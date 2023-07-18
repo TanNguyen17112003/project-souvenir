@@ -6,6 +6,7 @@ import slides from '../data/slidesData.json';
 import { FaCarSide, FaRegListAlt, FaPhoneAlt } from 'react-icons/fa';
 import axios from "axios";
 import LatestItems from '../DynamicComponents/LatestItems';
+import { Link } from 'react-router-dom';
 
 
 function Main() {
@@ -27,7 +28,7 @@ function Main() {
     <div className='bg-neutral-200'>
       {/* Slide banner */}
       <div 
-        className='flex w-full justify-center items-center pb-10 mx-auto h-[800px]'
+        className='flex w-full justify-center items-center pb-10 mx-auto h-[600px]'
       >
         <Slide data={slides.slides}/>
       </div>
@@ -118,6 +119,7 @@ function Main() {
       <h1 className='font-bold uppercase pl-[70px] py-[20px] text-[24px]'>sản phẩm mới</h1>
       {/* List item latest */}
       <LatestItems items={items} />
+      <p className='text-center uppercase text-[20px] py-[10px] text-[blue]'><Link to='/menu'>Xem thêm...</Link></p>
     </div>
   )
 }
