@@ -3,6 +3,7 @@ import WithoutWrap from '../components/wrap/WithoutWrap';
 import { useNavigate } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { HiX } from 'react-icons/hi';
 function Login() {
   const { login } = useAuth(); 
   const showErrorMessage = useRef(false);
@@ -18,6 +19,12 @@ function Login() {
   return (
     <WithoutWrap >
       <div className='w-full bg-[#009387] flex flex-col justify-center items-center relative h-[100vh]'>
+        <div 
+          onClick={() => {navigate("/")}}
+          className='absolute cursor-pointer right-[30px] top-[20px] w-[50px] h-[50px]'
+        >
+            <HiX className='w-full h-full' />
+        </div>
         <h1 className='uppercase text-[30px] font-bold mb-[50px]'>đăng nhập vào tài khoản của bạn</h1>
         <form 
           action=""

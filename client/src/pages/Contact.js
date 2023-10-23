@@ -1,6 +1,6 @@
 import React from 'react';
 import WithoutWrap from '../components/wrap/WithoutWrap';
-import { HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail } from "react-icons/hi";
+import { HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail, HiX } from "react-icons/hi";
 import { FaFacebookSquare, FaInstagramSquare, FaTwitterSquare, FaLinkedin } from 'react-icons/fa';
 import { useState } from 'react';
 import axios from 'axios';
@@ -31,7 +31,13 @@ function Contact() {
     }
     return (
         <WithoutWrap>
-            <div className='py-[100px] px-[200px] bg-[#242424] text-white'>
+            <div className='py-[100px] px-[200px] bg-[#242424] text-white relative'>
+                <div 
+                    onClick={() => {navigate("/")}}
+                    className='absolute cursor-pointer right-[30px] top-[20px] w-[50px] h-[50px]'
+                >
+                        <HiX className='w-full h-full' />
+                </div>
                 <h1 className='uppercase font-bold text-3xl text-center mb-[20px] text-[#81d4ad]'>liên hệ chúng tôi!</h1>
                 <p className='italic text-center text-xl'>Hãy để lại cảm nhận và nhận xét của bạn về những trải nghiệm khi ghé thăm TTV souvenir để chúng tôi ngày càng nâng cấp hệ thống của mình</p>
                 <div className='flex mt-[40px]'>

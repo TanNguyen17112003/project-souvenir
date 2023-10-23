@@ -2,11 +2,23 @@
 import { React, createContext, useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import AdminHome from '../admin/components/AdminHome';
+import Category from '../admin/components/Category';
+import Feedback from '../admin/components/Feedback';
+import User from '../admin/components/User';
 const AuthContext = createContext();
 export const useAuth = () => {
   return useContext(AuthContext);
 }
 export const AuthProvider = ({children}) => {
+  const options = ["Trang chủ", "Quản lý sản phẩm", "Quản lý phản hồi", "Quản lý khách hàng"];
+  const [selectedOption, setSelectedOption] = useState("Trang chủ");
+  const components = {
+    "Trang chủ": <AdminHome />,
+    "Quản lý sản phẩm": <Category />,
+    "Quản lý phản hồi": <Feedback />,
+    "Quản lý khách hàng": <User />
+  }
   const navigate = useNavigate();
   const register = async (email, pwd) => {
     
@@ -52,6 +64,10 @@ export const AuthProvider = ({children}) => {
     login,
     register,
     logout,
+    components,
+    options,
+    selectedOption,
+    setSelectedOption
   }
   return (
     <AuthContext.Provider value={value}>

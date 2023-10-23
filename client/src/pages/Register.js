@@ -2,6 +2,7 @@ import React from 'react'
 import WithoutWrap from '../components/wrap/WithoutWrap'
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
+import { HiX } from 'react-icons/hi';
 
 import { useAuth } from '../context/AuthContext';
 const EMAIL_REGEX = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
@@ -52,6 +53,12 @@ function Register() {
   return (
     <WithoutWrap>
       <div className='flex flex-col items-center justify-center h-[100vh] bg-[#009387]'>
+        <div 
+          onClick={() => {navigate("/")}}
+          className='absolute cursor-pointer right-[30px] top-[20px] w-[50px] h-[50px]'
+        >
+            <HiX className='w-full h-full' />
+        </div>
         <h1 className='uppercase text-[30px] font-bold mb-[50px]'>đăng ký tài khoản với ttv souvenir</h1>
         <form 
           action="POST"

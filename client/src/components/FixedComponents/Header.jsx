@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react'
+import {React,  useState} from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png'
 import { useNavigate } from 'react-router-dom';
@@ -108,6 +108,12 @@ function Header() {
               className="font-bold bg-[#81d4ad] text-white border-[2px] p-[10px] rounded-[20px]  hover:bg-black hover:text-white"
             >
               Đăng ký
+            </Link>
+            <Link
+              to="/loginAdmin"
+              className="font-bold ml-[30px] text-black p-[10px] bg-gray-300 rounded-[20px] hover:text-white hover:bg-black"
+            >
+              Đăng nhập quản trị viên
             </Link>
           </>
         )}
