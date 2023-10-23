@@ -146,6 +146,16 @@ app.post("/signup", async (req, res) => {
       return res.status(500).json({ message: "Lỗi khi xử lý yêu cầu đăng ký." });
     }
 });
+// API for get all products in database
+app.get("/menu/all", (req, res) => {
+    const getAllProductsQuery = "SELECT * FROM product";
+    myDb.query(getAllProductsQuery, (err, data) => {
+        if (err) {
+            return res.status(500),json({message: "Server failed"})
+        }
+        return res.status(200).json(data);
+    })
+})
 // Handle for login
 app.post("/login", async (req, res) => {
     const {email, pwd} = req.body;
@@ -262,6 +272,94 @@ app.delete("/cart/remove/:email/:id", async (req, res) => {
         return res.status(200).json(data);
     })
 })
+// Api for login admin
+app.post("/loginAdmin", async (req, res) => {
+    const {email, pwd} = req.body;
+    const checkAdminAccountQuery = "SELECT * FROM admin WHERE email = ? AND pwd = ?";
+    try {
+        const result = await queryPromise(myDb, checkAdminAccountQuery, [email, pwd]);
+        if (result.length > 0) {
+            console.log("Login admin succeeded");
+            return res.status(200).json(result);
+        }
+        else {
+            console.log("Not Found admin account");
+            return res.status(404).json({message: "Not Found Admin Account"});
+        }
+    }
+    catch (e) {
+        console.log(e);
+        return res.status(500).json({message: "Server broke"})
+    }
+})
+// API for admin
+// API for get total customer from database
+app.get("/customers", async(req, res) => {
+    const getTotalCustomersQuery = "SELECT COUNT(email) as totalCustomer FROM user";
+    myDb.query(getTotalCustomersQuery, (err, data) => {
+        if (err) {
+            return res.status(500).json({message: "Server failed"});
+        }
+        return res.status(200).json(data)
+    })
+})
+// API for get total type of Product in database
+app.get("/products", async(req, res) => {
+    const getTotalProductsQuery = "SELECT COUNT(id) as totalProduct FROM product";
+    myDb.query(getTotalProductsQuery, (err, data) => {
+        if (err) {
+            return res.status(500).json({message: "Server failed"});
+        }
+        return res.status(200).json(data)
+    })
+})
+// API for get total feedbackes from customers in database
+app.get("/feedbacks", async(req, res) => {
+    const getTotalFeedbacksQuery = "SELECT COUNT(id) as totalFeedback FROM contact";
+    myDb.query(getTotalFeedbacksQuery, (err, data) => {
+        if (err) {
+            return res.status(500).json({message: "Server failed"});
+        }
+        return res.status(200).json(data)
+    })
+})
+// handle for delete product in admin role
+app.delete("/products/:id", async(req, res) => {
+    const productId = req.params.id;
+    const deleteProductQuery = "DELETE FROM product WHERE id = ?";
+    myDb.query(deleteProductQuery, [productId], (err, data) => {
+        if (err) {
+            return res.status(500).json({message: "Server failed"});
+        }
+        return res.status(200).json({message: "Successful Deletion"})
+    })
+})
+// handle for update product in admin role
+app.put("/products/:id", async (req, res) => {
+    const productId = req.params.id;
+    const { name, cost } = req.body;
+    let updateProductQuery = "UPDATE product SET ";
+    let values = [];
+    if (name) {
+        updateProductQuery += "name = ?, ";
+        values.push(name);
+    }
+    if (cost) {
+        updateProductQuery += "cost = ?, ";
+        values.push(cost);
+    }
+    updateProductQuery = updateProductQuery.replace(/,\s*$/, "");
+    updateProductQuery += " WHERE id = ?";
+    values.push(productId);
+
+    // Thực hiện truy vấn
+    myDb.query(updateProductQuery, values, (err, data) => {
+        if (err) {
+            return res.status(500).json({ message: "Server failed" });
+        }
+        return res.status(200).json({ message: "Successful Update" });
+    });
+});
 app.listen(PORT, () => {
     console.log('Project is running')
 })
