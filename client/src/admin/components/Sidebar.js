@@ -11,7 +11,7 @@ function Sidebar() {
     setSelectedOption(option);
   }
   return (
-    <div className='w-[15%]  bg-slate-700 '>
+    <div className='w-[15%]  bg-slate-700 sticky'>
       <div className='text-white p-[20px] relative'>
         <span className='uppercase'>admin</span>
         <h4 className='italic'>{adminEmail}</h4>

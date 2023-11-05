@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('../client/src/assets/images'));
 const myDb = sql.createConnection({
-    host: 'localhost',
+    host: '127.0.0.2',
     user: 'root',
     password: 'tan17112003',
     database: 'souvenir'
@@ -37,7 +37,7 @@ app.get("/items", (req, res) => {
 
 app.get("/items/:id", (req, res) => {
     const itemId = req.params.id;
-    const query = "SELECT * FROM (SELECT * FROM flower UNION (SELECT * FROM animal) UNION (SELECT * FROM bag)  UNION (SELECT * FROM bear) UNION (SELECT * FROM coaster) UNION (SELECT * FROM hat) UNION (SELECT * FROM keychain) UNION (SELECT * FROM zodiac)) AS subTable WHERE id = ?";
+    const query = "SELECT * FROM product WHERE id = ?";
     myDb.query(query, [itemId], (err, data) => {
         if (err) {
             return res.json(err);
@@ -48,7 +48,7 @@ app.get("/items/:id", (req, res) => {
 
 // Render flower items
 app.get("/menu/flowers", (req, res) => {
-    const query = "SELECT * FROM flower";
+    const query = "SELECT * FROM product WHERE kind = 'flower'";
     myDb.query(query, (err, data) => {
         if (err) {
             console.log(err);
@@ -59,7 +59,7 @@ app.get("/menu/flowers", (req, res) => {
 })
 // Render animal items
 app.get("/menu/animals", (req, res) => {
-    const query = "SELECT * FROM animal";
+    const query = "SELECT * FROM product WHERE kind = 'animal'";
     myDb.query(query, (err, data) => {
         if (err) {
             console.log(err);
@@ -69,7 +69,7 @@ app.get("/menu/animals", (req, res) => {
     })
 })
 app.get("/menu/bags", (req, res) => {
-    const query = "SELECT * FROM bag";
+    const query = "SELECT * FROM product WHERE kind = 'bag'";
     myDb.query(query, (err, data) => {
         if (err) {
             console.log(err);
@@ -79,7 +79,7 @@ app.get("/menu/bags", (req, res) => {
     })
 })
 app.get("/menu/coasters", (req, res) => {
-    const query = "SELECT * FROM coaster";
+    const query = "SELECT * FROM product WHERE kind = 'coaster'";
     myDb.query(query, (err, data) => {
         if (err) {
             console.log(err);
@@ -89,7 +89,7 @@ app.get("/menu/coasters", (req, res) => {
     })
 })
 app.get("/menu/bears", (req, res) => {
-    const query = "SELECT * FROM bear";
+    const query = "SELECT * FROM product WHERE kind = 'bear'";
     myDb.query(query, (err, data) => {
         if (err) {
             console.log(err);
@@ -99,7 +99,7 @@ app.get("/menu/bears", (req, res) => {
     })
 })
 app.get("/menu/hats", (req, res) => {
-    const query = "SELECT * FROM hat";
+    const query = "SELECT * FROM product WHERE kind ='hat'";
     myDb.query(query, (err, data) => {
         if (err) {
             console.log(err);
@@ -109,7 +109,7 @@ app.get("/menu/hats", (req, res) => {
     })
 })
 app.get("/menu/keychains", (req, res) => {
-    const query = "SELECT * FROM keychain";
+    const query = "SELECT * FROM product WHERE kind = 'keychain'";
     myDb.query(query, (err, data) => {
         if (err) {
             console.log(err);
@@ -119,7 +119,7 @@ app.get("/menu/keychains", (req, res) => {
     })
 })
 app.get("/menu/zodiacs", (req, res) => {
-    const query = "SELECT * FROM zodiac";
+    const query = "SELECT * FROM product WHERE kind = 'zodiac'";
     myDb.query(query, (err, data) => {
         if (err) {
             console.log(err);

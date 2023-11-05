@@ -104,4 +104,4 @@ function EditProduct() {
     );
 }
 
-export default EditProduct;
+export default EditProduct
