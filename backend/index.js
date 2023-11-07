@@ -363,3 +363,5 @@ app.put("/products/:id", async (req, res) => {
 app.listen(PORT, () => {
     console.log('Project is running')
 })
+
+module.export = app;
